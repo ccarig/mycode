@@ -10,7 +10,7 @@ import json
 
 def display_lists(list_names, my_lists):
     print("Lists: ")
-    for i, (name, lst) in enumerate(zip(list_names, lists)):
+    for i, (name, lst) in enumerate(zip(list_names, my_lists)):
         print(f"{i + 1}. {name}: {lst}")
     print()
 
@@ -20,34 +20,34 @@ my_lists = [[], [], []]
 
 #display_lists(list_names, my_lists)
 
-def add_item(lists):
-    display_lists(lists_names)   
+def add_item(list_names, my_lists):
+    display_lists(list_names, my_lists)   
     list_index = int(input("Choose a list to add to (1-3): ")) - 1
     item = input("Enter the item to add: ")
-    lists[list_index].append(item)
+    my_lists[list_index].append(item)
     print(f"{item} added to list {list_index + 1}.\n")
 
-def move_item(lists):
-    display_lists(lists)
+def move_item(list_names, my_lists):
+    display_lists(list_names, my_lists)
     from_list = int(input("Choose a list to move from (1-3): ")) - 1
     to_list = int(input("Choose a list to move to (1-3): ")) - 1
 
 
-    if not lists[from_list]:
+    if not my_lists[from_list]:
         print("Cannot move from an empty list.\n")
         return
 
     item_name = input("Enter the name of the item to move: ")
 
     if item_name in lists[from_list]:
-        lists[from_list].remove(item_name)
-        lists[to_list].append(item_name)
+        my_lists[from_list].remove(item_name)
+        my_lists[to_list].append(item_name)
         print(f"{item_name} moved from list {from_list + 1} to list {to_list + 1}.\n")
     else:
         print(f"Item '{item_name}' not found in list {from_list + 1}.\n")
 
-def delete_item(lists):
-    display_lists(lists)
+def delete_item(list_names, my_lists):
+    display_lists(list_names, my_lists)
     list_index = int(input("Choose a list to delete from (1-3): ")) - 1
 
     if not lists[list_index]:
@@ -56,8 +56,8 @@ def delete_item(lists):
 
     item_name = input("Enter the name of the item to delete: ")
 
-    if item_name in lists[list_index]:
-        lists[list_index].remove(item_name)
+    if item_name in my_lists[list_index]:
+        my_lists[list_index].remove(item_name)
         print(f"{item_name} deleted from list {list_index + 1}.\n")
     else:
         print(f"Item '{item_name}' not found in list {list_index + 1}.\n")
